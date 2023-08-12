@@ -20,3 +20,7 @@ Run Server on Port 7000:
 Create Admmin User:
 
 - python manage.py createsuperuser
+
+Current WIP:
+
+- Setup Model Relations
