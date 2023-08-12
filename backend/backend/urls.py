@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from amyFinancesV2Backend import views
+
+router = routers.DefaultRouter()
+router.register(r'accounts', views.AccountView, 'account')
+router.register(r'transactions', views.TransactionView, 'transaction')
+router.register(r'orders', views.OrderView, 'order')
+router.register(r'stocks', views.StockView, 'stock')
+router.register(r'dividends', views.DividendView, 'dividend')
+router.register(r'categories', views.CategoryView, 'category')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
 ]

@@ -6,6 +6,7 @@ Setup a Django Backend:
 
 - pip install pipenv
 - pipenv install django
+- pipenv install djangorestframework django-cors-headers
 
 Run Migrations:
 
