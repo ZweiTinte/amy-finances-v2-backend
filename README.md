@@ -9,8 +9,13 @@ Setup a Django Backend:
 
 Run Migrations:
 
+- python manage.py makemigrations amyFinancesV2Backend
 - python manage.py migrate
 
 Run Server on Port 7000:
 
 - python manage.py runserver 7000
+
+Create Admmin User:
+
+- python manage.py createsuperuser
