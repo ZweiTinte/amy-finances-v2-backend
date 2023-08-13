@@ -23,4 +23,4 @@ Create Admmin User:
 
 Current WIP:
 
-- Setup Model Relations
+- Setup User Profiles
