@@ -7,8 +7,9 @@ Setup a Django Backend:
 - pip install pipenv
 - pipenv install django
 - pipenv install djangorestframework django-cors-headers
+- activate env: pipenv shell
 
-Run Migrations:
+Make/Run Migrations:
 
 - python manage.py makemigrations amyFinancesV2Backend
 - python manage.py migrate
@@ -20,6 +21,7 @@ Run Server on Port 7000:
 Create Admmin User:
 
 - python manage.py createsuperuser
+- Admin Route: http://localhost:7000/admin/
 
 Current WIP:
 
