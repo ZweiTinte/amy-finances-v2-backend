@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class AmyUser(models.Model):
     name = models.CharField(max_length=120)
+    email = models.CharField(max_length=120, default="")
     
 class Account(models.Model):
     iban = models.CharField(max_length=120)
