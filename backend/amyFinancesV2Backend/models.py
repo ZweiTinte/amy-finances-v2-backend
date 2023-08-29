@@ -1,21 +1,20 @@
 from django.db import models
 
 # Create your models here.
+class AmyUser(models.Model):
+    name = models.CharField(max_length=120)
+    
 class Account(models.Model):
     iban = models.CharField(max_length=120)
     name = models.CharField(max_length=120)
     balance = models.DecimalField(max_digits=20, decimal_places=3)
     accountType = models.CharField(max_length=120)
-
-    def _str_(self):
-        return self.name
+    user = models.ForeignKey(AmyUser, on_delete = models.CASCADE, blank = True, null = True)
     
 class Category(models.Model):
     type = models.IntegerField()
     name = models.CharField(max_length=120)
-
-    def _str_(self):
-        return self.name
+    user = models.ForeignKey(AmyUser, on_delete = models.CASCADE, blank = True, null = True)
     
 class Transaction(models.Model):
     transactionType = models.CharField(max_length=120)
@@ -28,9 +27,7 @@ class Transaction(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE, blank = True, null = True)
     fromAccount = models.ForeignKey(Account, on_delete = models.CASCADE, blank = True, null = True, related_name='transactionFromAccount')
     toAccount = models.ForeignKey(Account, on_delete = models.CASCADE, blank = True, null = True, related_name='transactionToAccount')
-
-    def _str_(self):
-        return self.name
+    user = models.ForeignKey(AmyUser, on_delete = models.CASCADE, blank = True, null = True)
     
 class Stock(models.Model):
     amount = models.DecimalField(max_digits=20, decimal_places=3)
@@ -39,9 +36,7 @@ class Stock(models.Model):
     link = models.TextField()
     name = models.CharField(max_length=120)
     watchlisted = models.BooleanField(default=False)
-
-    def _str_(self):
-        return self.name
+    user = models.ForeignKey(AmyUser, on_delete = models.CASCADE, blank = True, null = True)
     
 class Order(models.Model):
     amount = models.DecimalField(max_digits=20, decimal_places=3)
@@ -53,9 +48,7 @@ class Order(models.Model):
     fromAccount = models.ForeignKey(Account, on_delete = models.CASCADE, blank = True, null = True, related_name='orderFromAccount')
     toAccount = models.ForeignKey(Account, on_delete = models.CASCADE, blank = True, null = True, related_name='orderToAccount')
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, blank = True, null = True)
-
-    def _str_(self):
-        return self.date
+    user = models.ForeignKey(AmyUser, on_delete = models.CASCADE, blank = True, null = True)
     
 class Dividend(models.Model):
     amountBeforeTax = models.DecimalField(max_digits=20, decimal_places=3)
@@ -64,7 +57,5 @@ class Dividend(models.Model):
     exDate = models.CharField(max_length=120)
     stock = models.ForeignKey(Stock, on_delete = models.CASCADE, blank = True, null = True)
     toAccount = models.ForeignKey(Account, on_delete = models.CASCADE, blank = True, null = True)
-
-    def _str_(self):
-        return self.payDate
+    user = models.ForeignKey(AmyUser, on_delete = models.CASCADE, blank = True, null = True)
     
